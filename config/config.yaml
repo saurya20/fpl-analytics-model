@@ -1,0 +1,133 @@
+paths:
+  raw_data_dir: 'C:\Users\saury\OneDrive\Documents\projects\Fantasy-Premier-League\data'
+  processed_dir: 'C:\Users\saury\OneDrive\Documents\projects\fpl-analytics-model\data\processed'
+  results_dir: 'C:\Users\saury\OneDrive\Documents\projects\fpl-analytics-model\data\results'
+
+splits:
+  dev_seasons:
+    - '2016-17'
+    - '2017-18'
+    - '2018-19'
+    - '2019-20'
+    - '2020-21'
+    - '2021-22'
+    - '2022-23'
+  validation_season: '2023-24'
+  test_season: '2024-25'
+  out_of_sample_season: '2025-26'
+
+targets:
+  points: 'target_points'
+  minutes: 'target_minutes'
+  playing_60_plus: 'target_60_plus_minutes'
+
+features:
+  # Features always available across all seasons
+  player_base_rolling:
+    - "total_points_last_1"
+    - "total_points_last_3"
+    - "total_points_last_5"
+    - "total_points_last_10"
+    - "minutes_last_1"
+    - "minutes_last_3"
+    - "minutes_last_5"
+    - "minutes_last_10"
+    - "starts_last_3"
+    - "starts_last_5"
+    - "starts_last_10"
+    - "average_minutes_per_appearance"
+    - "starts_rate"
+    - "goals_last_3"
+    - "goals_last_5"
+    - "goals_last_10"
+    - "assists_last_3"
+    - "assists_last_5"
+    - "creativity_last_3"
+    - "creativity_last_5"
+    - "threat_last_3"
+    - "threat_last_5"
+    - "influence_last_3"
+    - "influence_last_5"
+    - "ict_index_last_3"
+    - "ict_index_last_5"
+    - "bps_last_3"
+    - "bps_last_5"
+    - "bonus_last_3"
+    - "bonus_last_5"
+    - "clean_sheets_last_5"
+    - "goals_conceded_last_3"
+    - "goals_conceded_last_5"
+    - "tackles_last_5"
+    - "clearances_blocks_interceptions_last_5"
+    - "recoveries_last_5"
+    - "saves_last_3"
+    - "saves_last_5"
+    - "saves_last_10"
+
+  # Expected stats (NaN in older seasons, will be handled via indicator/imputation)
+  player_expected:
+    - "xG_last_3"
+    - "xG_last_5"
+    - "xG_last_10"
+    - "xA_last_3"
+    - "xA_last_5"
+    - "xA_last_10"
+    - "xGI_last_3"
+    - "xGI_last_5"
+
+  # Position-dependent metrics
+  player_derived:
+    - "points_per_90_last_3"
+    - "points_per_90_last_5"
+    - "points_per_90_last_10"
+    - "points_per_90_season"
+    - "saves_per_90_last_5"
+
+  # Price, transfers, ownership
+  player_value_ownership:
+    - "current_price"
+    - "price_change_recent"
+    - "value_for_money"
+    - "value_form"
+    - "value_season"
+    - "selected_ratio"
+    - "ownership_change_recent"
+    - "transfers_in_ratio"
+    - "transfers_out_ratio"
+    - "transfers_balance_ratio"
+
+  # Season context & experience
+  player_experience:
+    - "player_gws_this_season"
+    - "player_minutes_this_season"
+    - "player_starts_this_season"
+
+  # Fixture specific details (DGW & BGW representation)
+  fixture_aggregates:
+    - "num_fixtures"
+    - "was_home_mean"
+    - "fixture_difficulty_mean"
+    - "fixture_difficulty_min"
+    - "fixture_difficulty_max"
+    - "fixture_1_difficulty"
+    - "fixture_2_difficulty"
+    - "is_double_gw"
+
+  # Point-in-time rolling team stats (dynamic strengths)
+  team_rolling:
+    - "player_team_scored_last_3_mean"
+    - "player_team_scored_last_5_mean"
+    - "player_team_conceded_last_3_mean"
+    - "player_team_conceded_last_5_mean"
+    - "player_team_clean_sheets_last_5_mean"
+    - "opponent_team_scored_last_3_sum"
+    - "opponent_team_scored_last_5_sum"
+    - "opponent_team_conceded_last_3_sum"
+    - "opponent_team_conceded_last_5_sum"
+    - "opponent_team_clean_sheets_last_5_sum"
+
+  # FPL static pre-season baseline strengths
+  team_static:
+    - "opponent_static_strength_mean"
+    - "opponent_static_defence_mean"
+    - "opponent_static_attack_mean"

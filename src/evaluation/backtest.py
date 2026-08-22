@@ -98,7 +98,8 @@ def run_season_holdout_backtest(
     train_seasons: List[str],
     test_season: str,
     model_name: str,
-    experiment_name: str
+    experiment_name: str,
+    custom_params: Dict[str, Any] = None
 ) -> Tuple[Dict[str, Any], pd.DataFrame]:
     """
     Train a model on training seasons and test on a single holdout season.
@@ -144,6 +145,8 @@ def run_season_holdout_backtest(
     else:
         # ML pipeline
         model = build_pipeline(model_name, numeric_features, categorical_features, task_type="regression")
+        if custom_params and model_name == "lightgbm":
+            model.set_params(**{f"model__{k}": v for k, v in custom_params.items()})
         model.fit(X_train, y_train)
         
     # Predict
@@ -178,7 +181,8 @@ def run_weekly_expanding_backtest(
     test_season: str,
     model_name: str,
     experiment_name: str,
-    retrain_interval: int = 1
+    retrain_interval: int = 1,
+    custom_params: Dict[str, Any] = None
 ) -> Tuple[Dict[str, Any], pd.DataFrame]:
     """
     Expanded/Rolling Window Backtester:
@@ -248,6 +252,8 @@ def run_weekly_expanding_backtest(
                     current_model = PositionSeasonAverageRegressor()
             else:
                 current_model = build_pipeline(model_name, numeric_features, categorical_features, task_type="regression")
+                if custom_params and model_name == "lightgbm":
+                    current_model.set_params(**{f"model__{k}": v for k, v in custom_params.items()})
                 
             current_model.fit(X_train, y_train)
             last_train_gw = gw

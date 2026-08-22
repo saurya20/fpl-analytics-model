@@ -131,3 +131,31 @@ features:
     - "opponent_static_strength_mean"
     - "opponent_static_defence_mean"
     - "opponent_static_attack_mean"
+
+  # Workload (Phase 7 Expansion, not consumed by current production model)
+  player_workload:
+    - "pl_minutes_last_14d"
+    - "external_minutes_last_7d"
+    - "external_minutes_last_14d"
+    - "external_minutes_last_21d"
+    - "total_minutes_last_14d"
+    - "external_appearances_last_7d"
+    - "external_appearances_last_14d"
+    - "external_appearances_last_21d"
+    - "external_starts_last_14d"
+    - "external_goals_last_14d"
+    - "external_assists_last_14d"
+    - "total_competitive_minutes_last_7d"
+    - "total_competitive_minutes_last_14d"
+    - "total_competitive_minutes_last_21d"
+    - "days_since_player_last_match"
+
+  # Fixture Congestion (Phase 7 Expansion, not consumed by current production model)
+  fixture_congestion:
+    - "team_matches_last_7d"
+    - "team_matches_last_14d"
+    - "team_matches_next_7d"
+    - "days_since_team_last_match"
+    - "days_until_next_match"
+    - "fixture_congestion_score"
+

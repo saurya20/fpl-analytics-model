@@ -1,0 +1,1 @@
+from src.optimization.squad_optimizer import optimize_squad

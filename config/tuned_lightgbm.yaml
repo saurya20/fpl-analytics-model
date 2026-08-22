@@ -1,0 +1,16 @@
+best_params:
+  colsample_bytree: 0.7423225732709947
+  learning_rate: 0.025426596253122533
+  max_depth: 9
+  min_child_samples: 63
+  n_estimators: 250
+  num_leaves: 118
+  reg_alpha: 0.006264781673179343
+  reg_lambda: 5.368275921227293e-06
+  subsample: 0.7104980635317607
+metadata:
+  best_validation_score: 0.7036241289915965
+  optimization_metric: spearman
+  timestamp: '2026-08-19 11:26:31'
+  validation_methodology: Static chronological holdout on 2023-24 validation season,
+    trained on 2016-17 to 2022-23

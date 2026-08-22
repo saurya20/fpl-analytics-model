@@ -38,3 +38,23 @@ models/*.bin
 # Temporary files
 tmp/
 temp/
+# FPL datasets
+data/*
+!data/.gitkeep
+
+# Scratch / temporary development files
+scratch/
+
+# Generated models
+models/
+.venv/
+__pycache__/
+*.pyc
+.env
+models/*.joblib
+data/state/current_squad.json
+data/state/backups/
+data/processed/*.parquet
+data/raw/
+data/results/
+data/state/current_squad.json

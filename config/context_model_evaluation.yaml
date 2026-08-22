@@ -1,0 +1,33 @@
+# Configuration for Phase 8: Historical Football Context Evaluation
+
+splits:
+  train_seasons:
+    - "2016-17"
+    - "2017-18"
+    - "2018-19"
+    - "2019-20"
+    - "2020-21"
+    - "2021-22"
+    - "2022-23"
+  validation_season: "2023-24"
+  test_season: "2024-25"
+  oos_season: "2025-26"
+
+feature_groups:
+  baseline:
+    - "player_base_rolling"
+    - "player_expected"
+    - "player_derived"
+    - "player_value_ownership"
+    - "player_experience"
+    - "fixture_aggregates"
+    - "team_rolling"
+    - "team_static"
+  context:
+    - "player_workload"
+    - "fixture_congestion"
+
+targets:
+  points: "target_points"
+  minutes: "target_minutes"
+  playing_60_plus: "target_60_plus_minutes"

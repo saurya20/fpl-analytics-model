@@ -97,9 +97,10 @@ def build_fixture_features(
         df["opponent_static_attack"] = np.nan
         
     # Fill static strengths with defaults (3 = medium strength, etc.)
-    df["opponent_static_strength"] = df["opponent_static_strength"].fillna(3.0)
-    df["opponent_static_defence"] = df["opponent_static_defence"].fillna(1000.0)
-    df["opponent_static_attack"] = df["opponent_static_attack"].fillna(1000.0)
+    # Replace 0 (unpopulated API values) or NaN with defaults
+    df["opponent_static_strength"] = df["opponent_static_strength"].replace(0, np.nan).fillna(3.0)
+    df["opponent_static_defence"] = df["opponent_static_defence"].replace(0, np.nan).fillna(1000.0)
+    df["opponent_static_attack"] = df["opponent_static_attack"].replace(0, np.nan).fillna(1000.0)
     
     # 5. Group by (season, gw, code) to aggregate double gameweeks
     # Convert was_home to float for mean was_home
